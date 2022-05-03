@@ -2,4 +2,6 @@
 
 To-do list
  - preprocessing dead sea scrolls:
- -    use RLSA algorithm yes/no?
+    - binarization: already done
+    - text zone detection: already done
+    - line segmentation
