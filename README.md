@@ -12,4 +12,7 @@ To-do list
 
 ## IAM dataset
 To-do list
-- TrOCR model?
+- TrOCR model? Current notebook mostly copied from tutorial. We have to add something of our own
+- Finetune on our data, train on powerful pc. Is it allowed to used model pretrained on iam?
+- create script to output results according to the wanted format
+- Data augmentation
