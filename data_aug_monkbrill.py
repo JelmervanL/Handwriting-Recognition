@@ -73,14 +73,16 @@ def keep_original(img):
     return img
 
 def erosion(img):
-    kernel_size = random.randint(2, 4)
-    kernel = np.ones((kernel_size,kernel_size), np.uint8)
+    kernel_size1 = random.randint(2, 3)
+    kernel_size2 = random.randint(2, 3)
+    kernel = np.ones((kernel_size1,kernel_size2), np.uint8)
     img = cv2.erode(img, kernel, iterations=1)
     return img
 
 def dilation(img):
-    kernel_size = random.randint(2, 4)
-    kernel = np.ones((kernel_size,kernel_size), np.uint8)
+    kernel_size1 = random.randint(2, 3)
+    kernel_size2 = random.randint(2, 3)
+    kernel = np.ones((kernel_size1,kernel_size2), np.uint8)
     img = cv2.dilate(img, kernel, iterations=1)
     return img
 

@@ -20,7 +20,7 @@ if __name__ == '__main__':
 	print("Results will be saved in:", output_file + '.txt')
 
 	print("Loading model...")
-	# load finetuned model; Have to change to our pretrained model
+	# load our finetuned model
 	model = VisionEncoderDecoderModel.from_pretrained("models/trocr-small-5beam/checkpoint-3730", local_files_only=True)
 	# load pretrained processor
 	processor = TrOCRProcessor.from_pretrained("microsoft/trocr-small-handwritten")

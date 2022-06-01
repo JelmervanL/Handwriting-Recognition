@@ -11,9 +11,6 @@ from PIL import Image
 
 def thresholding(image):
     _ ,thresh = cv2.threshold(image,80,255,cv2.THRESH_BINARY_INV)
-#     plt.figure(figsize=(4,4))
-#     plt.title("Thresholded")
-#     plt.imshow(thresh, cmap='gray')
     return thresh
 
 def dilation(img):
