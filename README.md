@@ -35,6 +35,11 @@ python3 task3_iam_test.py --input_dir <path to directory containing the images> 
 ```
 Don't include `.txt` in the output file name, this is already included in the code. The default name is 'output' and will be saved in the `Task3` folder.
 
+An example: 
+
+```bash
+python3 task3_iam_test.py --input_dir IAM-data/test/ --output output
+```
 Use:
 
 ```bash
