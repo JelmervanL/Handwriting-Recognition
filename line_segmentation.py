@@ -25,7 +25,7 @@ def dilation(img):
 
     return dilated
 
-def invert(img):
+def inverting(img):
     #Invert the image back from black background to white background, for the path finder. 
     invert = cv2.bitwise_not(img)
 
@@ -210,3 +210,22 @@ def get_line_images(line_segments, image):
 
     return line_image
 
+def segment_lines(image):
+    thresh_img = thresholding(image)
+    dilated = dilation(thresh_img)
+    invert = inverting(dilated)
+
+    hpp = horizontal_projections(dilated)
+    peaks = get_peaks(hpp)
+
+    not_peaks = find_not_peak_regions(hpp, peaks)
+    not_peaks_index = np.array(not_peaks)[:,0].astype(int)
+
+    hpp_clusters = get_hpp_walking_regions(not_peaks_index)
+
+    binary_image = get_binary(invert)
+    line_segments = get_line_segments(hpp_clusters, binary_image)
+
+    line_images = get_line_images(line_segments, image)
+
+    return line_images
