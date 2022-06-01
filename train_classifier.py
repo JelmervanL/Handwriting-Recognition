@@ -63,6 +63,11 @@ if __name__ == '__main__':
     X_val = np.array(X_val) 
     y_val = np.array(y_val)
 
+    # reshape so datagenerator can be used
+    # make sure to also reshape to this format during inference
+    X_train = X_train.reshape(X_train.shape[0], 48, 38, 1)
+    X_val = X_val.reshape(X_val.shape[0], 48, 38, 1)
+
     # instantiate model
     model = build_model()
 
@@ -74,11 +79,25 @@ if __name__ == '__main__':
         os.makedirs('models')
     model_filepath = 'models/trained_LeNet_model.h5'
 
+    # Image datagenerator for easy data augmentation during runtime
+    datagen = keras.preprocessing.image.ImageDataGenerator(
+        rotation_range=15,
+        width_shift_range=0.15,
+        height_shift_range=0.15,
+        shear_range=0.15,
+        zoom_range=0.15,
+        horizontal_flip=False,
+        vertical_flip=False,
+        fill_mode='constant',
+        cval=255)
+
+    datagen.fit(X_train)
+
     # set callback to save model when validation loss is at minimum
     callback = ModelCheckpoint(filepath=model_filepath, save_weights_only=True, monitor='val_loss', mode='min', save_best_only=True)
 
     # train model
-    history = model.fit(X_train, y_train, epochs=10, validation_data = (X_val, y_val), callbacks = [callback], verbose=1)
+    history = model.fit(datagen.flow(X_train, y_train), epochs=100, validation_data = (X_val, y_val), callbacks = [callback], verbose=1)
 
     # Plot the loss of model
     plt.plot(history.history['loss'], label = 'Training loss')
