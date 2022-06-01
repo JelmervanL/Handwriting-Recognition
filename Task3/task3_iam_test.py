@@ -16,7 +16,8 @@ if __name__ == '__main__':
 	img_dir = args["input_dir"]
 	output_file = args["output"]
 
-	print("input image directory:", img_dir)
+	print("Input image directory:", img_dir)
+	print("Results will be saved in:", output_file + '.txt')
 
 	print("Loading model...")
 	# load finetuned model; Have to change to our pretrained model
@@ -32,9 +33,11 @@ if __name__ == '__main__':
 		generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
 		print(file)
 		print(generated_text)
+		print("\n")
 		txt_file.write(file + '\n')
 		txt_file.write(generated_text + '\n')
 		txt_file.write('\n')
 
 	txt_file.close()
 
+	print("Finished")
