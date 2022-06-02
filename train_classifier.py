@@ -45,7 +45,6 @@ def build_model():
 
     return model
 
-
 if __name__ == '__main__':
 
     # load data
@@ -94,7 +93,7 @@ if __name__ == '__main__':
     datagen.fit(X_train)
 
     # set callback to save model when validation loss is at minimum
-    callback = ModelCheckpoint(filepath=model_filepath, save_weights_only=True, monitor='val_loss', mode='min', save_best_only=True)
+    callback = ModelCheckpoint(filepath=model_filepath, save_weights_only=False, monitor='val_loss', mode='min', save_best_only=True)
 
     # train model
     history = model.fit(datagen.flow(X_train, y_train), epochs=100, validation_data = (X_val, y_val), callbacks = [callback], verbose=1)
