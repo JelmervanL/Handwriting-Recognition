@@ -3,18 +3,25 @@ import os
 from transformers import VisionEncoderDecoderModel
 from transformers import TrOCRProcessor
 from PIL import Image
+import argparse
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 if __name__ == '__main__':
 	# Parse command line arguments
-	parser = ArgumentParser(description = '', formatter_class=ArgumentDefaultsHelpFormatter)
-	parser.add_argument("-i", "--input_dir", help="Path to input that contains the line images")
-	parser.add_argument("-o", "--output_dir", default='results/', help="output directory where the txt file for each image will be saved")
-	
-	args = vars(parser.parse_args())
+	# parser = ArgumentParser(description = '', formatter_class=ArgumentDefaultsHelpFormatter)
+	# parser.add_argument("-i", "--input_dir", help="Path to input that contains the line images")
+	# parser.add_argument("-o", "--output_dir", default='results/', help="output directory where the txt file for each image will be saved")
 
-	img_dir = args["input_dir"]
-	results_filepath = args["output_dir"]
+	parser = argparse.ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
+	parser.add_argument("-o", "--output_dir", type=str, default="./results/", help="output directory where the txt file for each image will be saved")
+	parser.add_argument("input_dir", help="Path to input that contains the line images")
+	args = parser.parse_args()
+
+	
+	# args = vars(parser.parse_args())
+
+	img_dir = args.input_dir
+	results_filepath = args.output_dir
 
 	# create results directory for output
 	if not os.path.exists(results_filepath):
