@@ -39,15 +39,15 @@ To train the model open the `task3_iam_training.ipynb` jupyter notebook and run 
 This trained model can be invoked on new data. To do this use:
 
 ```bash
-python3 task3_iam_test.py --input_dir <path to directory containing the images> 
+python3 task3_iam_test.py <path to directory containing the images> 
 ```
 
-For each image in the input directory a txt file containing the predicited characters is saved in the now created `results` folder.
+For each image in the input directory a txt file containing the predicited characters is saved in the now created `./results/` folder.
 
 An example: 
 
 ```bash
-python3 task3_iam_test.py --input_dir IAM-data/test/ 
+python3 task3_iam_test.py IAM-data/test/ 
 ```
 
 Use:
@@ -60,12 +60,13 @@ to see the possible commands. This outputs:
 
 ```
 python3 task3_iam_test.py --help
-usage: task3_iam_test.py [-h] [-i INPUT_DIR] [-o OUTPUT_DIR]
+usage: task3_iam_test.py [-h] [-o OUTPUT_DIR] input_dir
+
+positional arguments:
+  input_dir             Path to input that contains the line images
 
 optional arguments:
   -h, --help            show this help message and exit
-  -i INPUT_DIR, --input_dir INPUT_DIR
-                        Path to input that contains the line images (default: None)
   -o OUTPUT_DIR, --output_dir OUTPUT_DIR
-                        output directory where the txt file for each image will be saved (default: results/)
+                        output directory where the txt file for each image will be saved (default: ./results/)
 ```
