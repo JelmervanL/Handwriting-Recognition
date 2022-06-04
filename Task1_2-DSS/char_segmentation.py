@@ -57,13 +57,14 @@ def find_middle_part_letter(image):
     hpp_image = thresholding(image)
     hpp_image = horizontal_projections(hpp_image)
     minimum_peak = int((np.max(hpp_image)-np.min(hpp_image))/3)
-    peaks, _ = find_peaks(hpp_image, height=minimum_peak , distance=100)   
-    toplefty = max(peaks[0]-20, 0)
-    height = min(40, image.shape[0]-toplefty)
-    new_image = image[toplefty:toplefty+height, :]
+    peaks, _ = find_peaks(hpp_image, height=minimum_peak , distance=100) 
+    if len(peaks) != 0:
+        toplefty = max(peaks[0]-20, 0)
+        height = min(40, image.shape[0]-toplefty)
+        new_image = image[toplefty:toplefty+height, :]
+    else:
+        new_image = image
     return new_image
-
-
 
 #Calculate the horizontal projections and find the peaks of white areas
 def not_bb_divider_peaks(image):
