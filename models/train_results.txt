@@ -1,2 +1,0 @@
-min val loss: 0.1658, with val accuracy of: 0.9540
-max val acc: 0.9585, with val loss of: 0.2444
