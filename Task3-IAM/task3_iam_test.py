@@ -36,22 +36,23 @@ if __name__ == '__main__':
 	# load pretrained processor
 	processor = TrOCRProcessor.from_pretrained("microsoft/trocr-small-handwritten")
 
-	for file in os.listdir(img_dir):
+	for input_img in os.listdir(img_dir):
 		# get predicition
-		image = Image.open(os.path.join(img_dir, file)).convert("RGB")
+		image = Image.open(os.path.join(img_dir, input_img)).convert("RGB")
 		pixel_values = processor(image, return_tensors="pt").pixel_values
 		generated_ids = model.generate(pixel_values)
 		generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
 
-		print(file)
+		print(input_img)
 		print(generated_text)
 		print("\n")
 
-		image_name = file.split('.')[0]
+		image_name = input_img.split('.')[0]
 
 		# write to txt file
 		txt_file_savepath = os.path.join(results_filepath, image_name + '_characters.txt')
 		with open(txt_file_savepath, 'w') as txt_file:
 			txt_file.write(generated_text + '\n')
 
+	print("All results are saved in", results_filepath)
 	print("##### Finished #####")

@@ -26,27 +26,27 @@ if __name__ == '__main__':
     print ("")
     print("------------------------------")
 
-    for file in os.listdir(img_dir):
+    for input_img in os.listdir(img_dir):
 
-        image = cv2.imread(os.path.join(img_dir, file), cv2.IMREAD_UNCHANGED)
-        image_name = file.split('.')[0]
+        image = cv2.imread(os.path.join(img_dir, input_img), cv2.IMREAD_UNCHANGED)
+        image_name = input_img.split('.')[0]
 
         # Start segmenting text lines
-        print("Start segmenting lines " + file)
+        print("Start segmenting lines " + input_img)
         line_images = line_segmentation(image)
-        print("Done segmenting lines " + file)
+        print("Done segmenting lines " + input_img)
         print("   #####   ")
 
         # Segment words in each line
-        print("Start segmenting words " + file)
+        print("Start segmenting words " + input_img)
         words_per_line = get_words_per_line(line_images)
-        print("Finished segmenting words " + file)
+        print("Finished segmenting words " + input_img)
         print("   #####   ")
 
         # Segment characters,classify them and write to output file
-        print("Start segmenting characters and classification of " + file)
+        print("Start segmenting characters and classification of " + input_img)
         write_to_txt(words_per_line, os.path.join(output_dir, image_name + "_characters.txt"))
-        print("Finished classifying " + file)
+        print("Finished classifying " + input_img)
         print("")
 
         output_file = os.path.join(output_dir, image_name + "_characters.txt")
