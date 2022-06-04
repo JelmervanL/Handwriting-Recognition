@@ -56,4 +56,16 @@ Use:
 python3 task3_iam_test.py --help
 ```
 
-to see the possible commands.
+to see the possible commands. This outputs:
+
+```
+python3 task3_iam_test.py --help
+usage: task3_iam_test.py [-h] [-i INPUT_DIR] [-o OUTPUT_DIR]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT_DIR, --input_dir INPUT_DIR
+                        Path to input that contains the line images (default: None)
+  -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        output directory where the txt file for each image will be saved (default: results/)
+```
