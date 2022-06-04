@@ -1,13 +1,13 @@
 import sys, os
 import argparse
-
+from argparse import ArgumentDefaultsHelpFormatter
 from line_segmentation import *
 from word_segmentation import *
 from char_segmentation import *
 from classify import *
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument("-o", "--output_dir", type=str, default="./results/", help="output directory where the txt file for each image will be saved")
     parser.add_argument("input_dir", help="Path to input that contains the binarized images of scrolls")
     args = parser.parse_args()
